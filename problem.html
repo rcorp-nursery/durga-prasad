@@ -1,0 +1,86 @@
+<hmtl>
+  <script>
+      /*  var obj1={
+          id:1,
+          name:"Kundan",
+         children:[
+
+         ]
+       };*/
+       var obj1=[
+                  {
+                    id:1,
+                    Name:"Kundan",
+                    children:[
+                                 {id:2,
+                                 Name:"Durga Prasad"
+                                 },
+                                 {id:3,
+                                 Name:"Anjali"
+                                 },
+                                 {id:4,
+                                 Name:"Ankit"
+                                 }
+                          ]
+                },
+                {
+                  id:5,
+                  Name:"KD",
+                  children:[
+                              {id:6,
+                                Name:"Hemant",
+                              },
+                              {id:7,
+                                Name:"xyz"
+                              }
+                          ]
+                  }
+
+     ]
+
+      var arr22=[];
+    //   var check=[];
+       var lenArr1=obj1.length,l=0;
+        for(var i=0;i<lenArr1;i++)
+        {
+            for(var j in obj1[i])
+            {
+                if(typeof obj1[i][j] === 'object'){
+                for(var k=0;k<obj1[i][j].length;k++ )
+                {
+                  l=0;
+                  for(var l1 in obj1[i][j][k])
+                     {
+                       if(l==0){
+                               obj1[i][j][k].Parent=obj1[i-1]['id']
+                                arr22[arr22.length]=obj1[i][j][k];
+                                  l=1;
+                              }
+                     }
+                      l=0;
+                }
+              }
+              else {
+                    if(l==0){                                 //Parent
+                          check[check.length]=obj1[i];
+                           arr22[arr22.length]=check[check.length-1];
+                           l=1;
+                         }
+                  }
+
+            }
+            l=0;
+        }
+
+
+  var dp = arr22;
+  for(var i=0;i<arr22.length; i++){
+      delete dp[i].children
+      b.push(dp[i])
+}
+
+console.log(b);
+
+  </script>
+  <p>ddjsidj</p>
+</hmtl>
