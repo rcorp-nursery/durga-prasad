@@ -1,0 +1,74 @@
+<html>
+
+<head>
+	<script src="bower_components\underscore\underscore.js"></script>
+</head>
+<script>
+	var objectInArray = [{
+			id: 1,
+			Name: "Kundan",
+			children: [{
+				id: 2,
+				name: "Durga parentasad"
+			}, {
+				id: 3,
+				name: "Anjali"
+			}, {
+				id: 4,
+				name: "Ankit"
+			}]
+		}, {
+			id: 5,
+			Name: "KD",
+			children: [{
+				id: 6,
+				name: "Hemant",
+			}, {
+				id: 7,
+				name: "xyz"
+			}, {
+				id: 8,
+				name: "xyz"
+			}]
+		}
+
+	]
+
+
+/**
+ * [parentChild method taking input as array of many object and it adding key
+ *  named "parent" to children objects which has value of thier parent id ]
+ * @param  {[type]} objectInArray [Input array which containing many objects]
+ * copyObject=> containing copy of object present in objectInArray
+ * @return {[type]}   children    [containing children key of copyObject ]
+ * e.g input Array1=[{id:1,name:"dp",children:[{id:2,name:"Durga"}]}];
+ * Output is [{id:1,name:"dp"},{id:2,name:"Durga",parent:1}]
+ */
+	function parentChild(objectInArray) {
+		var finalArray = [];
+		_.map(objectInArray, function(objectInArray) {
+			var copyObject = _.clone(objectInArray);
+			var children = _.omit(copyObject.children);
+			delete copyObject.children;
+			finalArray.push(copyObject);                         //Pushing Parent id and Name in finalArray
+			_.map(_.values(children), function(childrenArray) {
+				_.extend(childrenArray, {                         //Add parent key in child object which has value of their parent id
+					parent: copyObject.id
+				});
+				finalArray.push(childrenArray); //Pushing Children id and name in finalArray
+			})
+
+		})
+		console.log(finalArray);
+	}
+
+	parentChild(objectInArray);
+
+
+
+
+
+	//  var valuesOfCopyObject=_.values(v1);
+</script>
+
+</html>
